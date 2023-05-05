@@ -1,8 +1,18 @@
 FROM ubuntu:20.04
 
-ADD .env ./app/
+WORKDIR /app
 
-RUN apt-get install git\
-  && git clone https://github.com/PhYdrogen/holbertonschool-AirBnB_clone_v4/
+ADD .env .
 
+RUN apt-get update\
+  && apt-get install -y git make python3 python3-distutils wget \
+  && git clone https://github.com/PhYdrogen/holbertonschool-AirBnB_clone_v4/\
+  && cd holbertonschool-AirBnB_clone_v4/\
+  && wget https://bootstrap.pypa.io/get-pip.py\
+  && python3 get-pip.py\
+  && pip install sqlalchemy\
+  && pip install flask
+
+CMD cd /app/holbertonschool-AirBnB_clone_v4/\
+  && make run
 EXPOSE 81:81
