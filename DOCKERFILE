@@ -1,0 +1,8 @@
+FROM ubuntu:20.04
+
+ADD .env ./app/
+
+RUN apt-get install git\
+  && git clone https://github.com/PhYdrogen/holbertonschool-AirBnB_clone_v4/
+
+EXPOSE 81:81
